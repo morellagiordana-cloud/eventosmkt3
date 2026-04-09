@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventos Evertec — Tracker 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lato', Helvetica, Arial, sans-serif; background: #F7F9FC; color: #1a1a1a; min-height: 100vh; }
+  .top-bar { background: #1B3A6B; padding: 1rem 2rem; display: flex; align-items: center; gap: 16px; }
+  .top-bar h1 { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+  .top-bar span { font-size: 13px; color: rgba(255,255,255,0.65); margin-left: auto; }
+  .dash { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem; }
+  .kpis { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 1.25rem; }
+  .kpi { background: #fff; border: 1px solid #e4e7ed; border-radius: 10px; padding: 1rem 1.2rem; }
+  .kpi-label { font-size: 11px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .kpi-value { font-size: 30px; font-weight: 700; line-height: 1; color: #1a1a1a; }
+  .kpi-sub { font-size: 12px; color: #6b7280; margin-top: 5px; }
+  .kpi-green { color: #0F6E56; }
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+  .card { background: #fff; border: 1px solid #e4e7ed; border-radius: 12px; padding: 1.1rem 1.25rem; }
+  .card-title { font-size: 11px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px; }
+  .bar-wrap { margin-bottom: 9px; }
+  .bar-label { font-size: 13px; color: #6b7280; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .bar-label strong { color: #1a1a1a; }
+  .bar-bg { background: #f1f3f7; border-radius: 4px; height: 8px; }
+  .bar-fill { height: 8px; border-radius: 4px; }
+  .table-card { background: #fff; border: 1px solid #e4e7ed; border-radius: 12px; padding: 1.1rem 1.25rem; }
+  .table-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; flex-wrap: wrap; gap: 12px; }
+  .filters { display: flex; flex-direction: column; gap: 8px; }
+  .fg { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .fl { font-size: 12px; font-weight: 700; color: #6b7280; min-width: 82px; }
+  .tab-row { display: flex; gap: 5px; flex-wrap: wrap; }
+  button.tab { font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 12px; padding: 4px 12px; border-radius: 6px; border: 1px solid #d1d5db; background: transparent; color: #6b7280; cursor: pointer; transition: all 0.12s; }
+  button.tab:hover { background: #f3f4f6; }
+  button.tab.active { background: #f3f4f6; color: #1a1a1a; font-weight: 700; border-color: #9ca3af; }
+  button.dpto-tab { font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 12px; padding: 4px 12px; border-radius: 6px; border: 1px solid #d1d5db; background: transparent; color: #6b7280; cursor: pointer; transition: all 0.12s; }
+  button.dpto-tab:hover { background: #f3f4f6; }
+  button.d-bs.active  { background: #E6F1FB; color: #185FA5; border-color: #85B7EB; font-weight: 700; }
+  button.d-mab.active { background: #EEEDFE; color: #534AB7; border-color: #AFA9EC; font-weight: 700; }
+  button.d-op.active  { background: #E1F5EE; color: #0F6E56; border-color: #5DCAA5; font-weight: 700; }
+  button.d-na.active  { background: #f1f0e8; color: #5F5E5A; border-color: #B4B2A9; font-weight: 700; }
+  .rc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+  th { text-align: left; color: #6b7280; font-weight: 700; padding: 7px 10px; border-bottom: 1px solid #e4e7ed; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 9px 10px; border-bottom: 1px solid #f1f3f7; color: #1a1a1a; word-break: break-word; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafbfc; }
+  .badge { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight: 700; white-space: nowrap; }
+  .b-comp { background: #E1F5EE; color: #0F6E56; }
+  .b-prog { background: #E6F1FB; color: #185FA5; }
+  .b-pend { background: #f1f0e8; color: #5F5E5A; }
+  .b-apro { background: #FAEEDA; color: #854F0B; }
+  .b-noap { background: #FCEBEB; color: #A32D2D; }
+  .q-pill { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 20px; background: #EEEDFE; color: #534AB7; font-weight: 700; }
+  .db-bs  { display:inline-block;font-size:11px;padding:2px 7px;border-radius:5px;background:#E6F1FB;color:#185FA5;font-weight:700; }
+  .db-mab { display:inline-block;font-size:11px;padding:2px 7px;border-radius:5px;background:#EEEDFE;color:#534AB7;font-weight:700; }
+  .db-op  { display:inline-block;font-size:11px;padding:2px 7px;border-radius:5px;background:#E1F5EE;color:#0F6E56;font-weight:700; }
+  .db-na  { display:inline-block;font-size:11px;padding:2px 7px;border-radius:5px;background:#f1f0e8;color:#5F5E5A;font-weight:700; }
+  .footer { text-align: center; font-size: 12px; color: #9ca3af; margin-top: 2rem; }
+  @media (max-width: 700px) {
+    .kpis { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .charts-row { grid-template-columns: 1fr; }
+    .top-bar h1 { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>Eventos Evertec — Tracker 2026</h1>
+  <span>44 eventos · actualizado Abr 2026</span>
+</div>
+
+<div class="dash">
+  <div class="kpis">
+    <div class="kpi"><div class="kpi-label">Eventos totales</div><div class="kpi-value" id="kT">44</div><div class="kpi-sub">Q1: 15 · Q2: 23 · Q3: 5 · Q4: 1</div></div>
+    <div class="kpi"><div class="kpi-label">Completados</div><div class="kpi-value kpi-green" id="kC">15</div><div class="kpi-sub">Q1 cerrado</div></div>
+    <div class="kpi"><div class="kpi-label">En curso / pendientes</div><div class="kpi-value" id="kP">29</div><div class="kpi-sub">4 por aprobar · 2 no aprobados</div></div>
+    <div class="kpi"><div class="kpi-label">Inversión total</div><div class="kpi-value" id="kI">$580,730</div><div class="kpi-sub" id="kIs">15 leads registrados</div></div>
+  </div>
+
+  <div class="charts-row">
+    <div class="card">
+      <div class="card-title">Inversión por mes</div>
+      <div style="position:relative;height:190px;"><canvas id="chartMes"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Por departamento y estado</div>
+      <div style="margin-top:4px;">
+        <div class="bar-wrap"><div class="bar-label"><span>Business Solutions</span><strong>29</strong></div><div class="bar-bg"><div class="bar-fill" style="width:66%;background:#378ADD"></div></div></div>
+        <div class="bar-wrap"><div class="bar-label"><span>Evertec &amp; MAB</span><strong>9</strong></div><div class="bar-bg"><div class="bar-fill" style="width:20%;background:#534AB7"></div></div></div>
+        <div class="bar-wrap"><div class="bar-label"><span>Oficina del Presidente</span><strong>4</strong></div><div class="bar-bg"><div class="bar-fill" style="width:9%;background:#1D9E75"></div></div></div>
+        <div class="bar-wrap"><div class="bar-label"><span>Sin departamento</span><strong>2</strong></div><div class="bar-bg"><div class="bar-fill" style="width:5%;background:#888780"></div></div></div>
+        <div style="margin-top:12px;border-top:1px solid #f1f3f7;padding-top:12px;">
+          <div style="font-size:11px;font-weight:700;color:#6b7280;margin-bottom:9px;text-transform:uppercase;letter-spacing:0.04em">Por estado</div>
+          <div class="bar-wrap"><div class="bar-label"><span>Completado (15)</span><span>34%</span></div><div class="bar-bg"><div class="bar-fill" style="width:34%;background:#1D9E75"></div></div></div>
+          <div class="bar-wrap"><div class="bar-label"><span>En progreso (19)</span><span>43%</span></div><div class="bar-bg"><div class="bar-fill" style="width:43%;background:#378ADD"></div></div></div>
+          <div class="bar-wrap"><div class="bar-label"><span>Por aprobar (4)</span><span>9%</span></div><div class="bar-bg"><div class="bar-fill" style="width:9%;background:#BA7517"></div></div></div>
+          <div class="bar-wrap"><div class="bar-label"><span>Pendiente (4)</span><span>9%</span></div><div class="bar-bg"><div class="bar-fill" style="width:9%;background:#888780"></div></div></div>
+          <div class="bar-wrap"><div class="bar-label"><span>No aprobado (2)</span><span>5%</span></div><div class="bar-bg"><div class="bar-fill" style="width:5%;background:#E24B4A"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <div class="card-title" style="margin-bottom:0;">Listado de eventos</div>
+      <div class="filters">
+        <div class="fg"><span class="fl">Estado:</span><div class="tab-row">
+          <button class="tab active" onclick="sf('estado','todos',this)">Todos</button>
+          <button class="tab" onclick="sf('estado','Completado',this)">Completados</button>
+          <button class="tab" onclick="sf('estado','En progreso',this)">En progreso</button>
+          <button class="tab" onclick="sf('estado','Por aprobar',this)">Por aprobar</button>
+          <button class="tab" onclick="sf('estado','Pendiente',this)">Pendientes</button>
+          <button class="tab" onclick="sf('estado','No aprobado',this)">No aprobados</button>
+        </div></div>
+        <div class="fg"><span class="fl">Quarter:</span><div class="tab-row">
+          <button class="tab active" onclick="sf('q','todos',this)">Todos</button>
+          <button class="tab" onclick="sf('q','Q1',this)">Q1</button>
+          <button class="tab" onclick="sf('q','Q2',this)">Q2</button>
+          <button class="tab" onclick="sf('q','Q3',this)">Q3+</button>
+        </div></div>
+        <div class="fg"><span class="fl">Dpto:</span><div class="tab-row">
+          <button class="dpto-tab d-na active" onclick="sf('dpto','todos',this)">Todos</button>
+          <button class="dpto-tab d-bs" onclick="sf('dpto','Business Solutions',this)">Business Solutions</button>
+          <button class="dpto-tab d-mab" onclick="sf('dpto','Evertec & MAB Event Status',this)">Evertec &amp; MAB</button>
+          <button class="dpto-tab d-op" onclick="sf('dpto','Oficina del Presidente',this)">Ofic. Presidente</button>
+          <button class="dpto-tab d-na" onclick="sf('dpto','Sin departamento',this)">Sin dept.</button>
+        </div></div>
+      </div>
+    </div>
+    <div class="rc" id="rc">Mostrando 44 eventos</div>
+    <table>
+      <thead><tr>
+        <th style="width:4%">Q</th>
+        <th style="width:10%">Fecha</th>
+        <th style="width:27%">Evento</th>
+        <th style="width:17%">Organización</th>
+        <th style="width:15%">Departamento</th>
+        <th style="width:12%">Estado</th>
+        <th style="width:9%">Inversión</th>
+        <th style="width:6%">Leads</th>
+      </tr></thead>
+      <tbody id="tbl"></tbody>
+    </table>
+  </div>
+
+  <div class="footer">Evertec Marketing &amp; Communications · FY 2026</div>
+</div>
+
+<script>
+const EV = [
+  {q:"Q1",date:"Ene 18",event:"Culturarte PR - Nadine Sierra",org:"PR Centro de Artes",dept:"Business Solutions",status:"Completado",inv:6000,leads:0},
+  {q:"Q1",date:"Feb 07",event:"Gala Fundación MMM",org:"MMM",dept:"Business Solutions",status:"Completado",inv:10000,leads:0},
+  {q:"Q1",date:"Feb 18",event:"22nd Trade & Learn Mech Show",org:"MCA Puerto Rico",dept:"Business Solutions",status:"Completado",inv:1000,leads:15},
+  {q:"Q1",date:"Feb 26",event:"Torneo Invitacional Claro / Fund. Carlos Beltrán",org:"Claro / Fund. Carlos Beltrán",dept:"Evertec & MAB Event Status",status:"Completado",inv:15000,leads:0},
+  {q:"Q1",date:"Feb 26",event:"Actividad Popular Insurance @ Humacao",org:"Popular Insurance",dept:"Evertec & MAB Event Status",status:"Completado",inv:0,leads:0},
+  {q:"Q1",date:"Feb 26",event:"Anti-Money Laundering Symposium",org:"Asoc. de Bancos de PR",dept:"Business Solutions",status:"Completado",inv:6000,leads:0},
+  {q:"Q1",date:"Mar 12",event:"Banking Tech Summit RD | Connecta B2B",org:"Connecta B2B",dept:"Business Solutions",status:"Completado",inv:2400,leads:0},
+  {q:"Q1",date:"Mar 13",event:"Make a Wish Golf Tournament",org:"Make a Wish",dept:"Business Solutions",status:"Completado",inv:3000,leads:0},
+  {q:"Q1",date:"Mar 14",event:"2026 Fiesta Gala: Celebrating Puerto Rico",org:"Banco Popular / Jane Stern",dept:"Business Solutions",status:"Completado",inv:15000,leads:0},
+  {q:"Q1",date:"Mar 19",event:"Fortinet & Evertec collab event",org:"Fortinet | Adistec",dept:"Business Solutions",status:"Completado",inv:0,leads:0},
+  {q:"Q1",date:"Mar 25",event:"Gala Benéfica Hogar Niñas Cupey",org:"Fund. Niñas de Cupey",dept:"Business Solutions",status:"Completado",inv:6000,leads:0},
+  {q:"Q1",date:"Mar 25",event:"Actividad Popular Insurance @ Isabella",org:"Popular Insurance",dept:"Evertec & MAB Event Status",status:"Completado",inv:0,leads:0},
+  {q:"Q1",date:"Mar 27",event:"Convención Ejecutivos Cooperativas @ Ponce",org:"Asoc. Cooperativas PR",dept:"Business Solutions",status:"Completado",inv:1600,leads:0},
+  {q:"Q1",date:"Mar 28",event:"Pink Gala @Fairmont El San Juan",org:"Susan G. Komen",dept:"Business Solutions",status:"Completado",inv:4000,leads:0},
+  {q:"Q1",date:"Mar 29",event:"5K Familia - Hospital del Niño",org:"Soc. Pro Hospital del Niño",dept:"Business Solutions",status:"Completado",inv:750,leads:0},
+  {q:"Q2",date:"Abr 11",event:"Gala 2026 Blank Canvas - MAPR",org:"Museo de Arte de PR",dept:"Business Solutions",status:"En progreso",inv:7500,leads:0},
+  {q:"Q2",date:"Abr 18",event:"Culturarte - Romeo & Juliet (Bernheim)",org:"PR Centro de Artes",dept:"Business Solutions",status:"En progreso",inv:6000,leads:0},
+  {q:"Q2",date:"Abr 22",event:"Endeavor Miami Summit",org:"Endeavor Initiative PR",dept:"Oficina del Presidente",status:"En progreso",inv:25000,leads:0},
+  {q:"Q2",date:"Abr 23",event:"Actividad Popular Insurance @ San Juan",org:"Popular Insurance",dept:"Evertec & MAB Event Status",status:"En progreso",inv:0,leads:0},
+  {q:"Q2",date:"Abr 29",event:"Mays Ochoa Torneo de Golf @ Bahía",org:"Mays Ochoa",dept:"Business Solutions",status:"Pendiente",inv:1000,leads:0},
+  {q:"Q2",date:"Abr 30",event:"CIO & IT Leadership Conference",org:"Puerto Rico IT Clusters",dept:"Business Solutions",status:"En progreso",inv:5000,leads:0},
+  {q:"Q2",date:"Abr 30",event:"Lunch and Learn",org:"Evertec Acumática",dept:"Business Solutions",status:"En progreso",inv:2500,leads:0},
+  {q:"Q2",date:"May 01",event:"Gran Copa Gobernadora 2026",org:"Fed. Ecuestre de PR",dept:"Evertec & MAB Event Status",status:"En progreso",inv:500,leads:0},
+  {q:"Q2",date:"May 01",event:"F1 Miami",org:"Formula 1",dept:"Oficina del Presidente",status:"En progreso",inv:354000,leads:0},
+  {q:"Q2",date:"May 11",event:"Actividad Popular Insurance @ Plaza Dorada",org:"Popular Insurance",dept:"Evertec & MAB Event Status",status:"En progreso",inv:0,leads:0},
+  {q:"Q2",date:"May 13",event:"Acumatica - Almuerzo Econo",org:"Evertec Acumática",dept:"Business Solutions",status:"En progreso",inv:3000,leads:0},
+  {q:"Q2",date:"May 15",event:"Coliseo de Puerto Rico - Ed Sheeran",org:"Concierto Ed Sheeran",dept:"Business Solutions",status:"En progreso",inv:0,leads:0},
+  {q:"Q2",date:"May 16",event:"Golf Empleados Popular",org:"Banco Popular",dept:"Business Solutions",status:"En progreso",inv:10000,leads:0},
+  {q:"Q2",date:"May 28",event:"El Museo del Barrio Gala",org:"El Museo del Barrio",dept:"Oficina del Presidente",status:"En progreso",inv:25000,leads:0},
+  {q:"Q2",date:"May 28",event:"PR COMPRA - Expo Suplidores de Gobierno",org:"PR COMPRA",dept:"Business Solutions",status:"En progreso",inv:3980,leads:0},
+  {q:"Q2",date:"Jun 04",event:"Subway & Wing Stop Golf Classic 2026",org:"Subway",dept:"Evertec & MAB Event Status",status:"Por aprobar",inv:2500,leads:0},
+  {q:"Q2",date:"Jun 05",event:"St. Jude Golf Tournament",org:"St. Jude Research Hospital",dept:"Business Solutions",status:"Por aprobar",inv:3000,leads:0},
+  {q:"Q2",date:"Jun 25",event:"MIDA Conference & Food Show 2026",org:"MIDA Centro de Convenciones",dept:"Evertec & MAB Event Status",status:"En progreso",inv:4500,leads:0},
+  {q:"Q3",date:"Jul 01",event:"Encuentro Econo @ Hyatt Grand Reserve",org:"Econo",dept:"Business Solutions",status:"Pendiente",inv:0,leads:0},
+  {q:"Q3",date:"Ago 07",event:"Torneo de Golf - MMM",org:"Fundación MMM",dept:"Business Solutions",status:"Por aprobar",inv:0,leads:0},
+  {q:"Q3",date:"Ago 08",event:"Culturarte - Freddie de Tommaso",org:"PR Centro de Artes",dept:"Oficina del Presidente",status:"En progreso",inv:10000,leads:0},
+  {q:"Q3",date:"Ago 12",event:"22do Torneo de Golf P.E.C.E.S.",org:"P.E.C.E.S. Inc.",dept:"Business Solutions",status:"En progreso",inv:1500,leads:0},
+  {q:"Q3",date:"Oct 30",event:"Asore Food Show",org:"Asore",dept:"Evertec & MAB Event Status",status:"En progreso",inv:10000,leads:0},
+  {q:"Q4",date:"Oct 04",event:"School of Rock Broadway Show",org:"Ender Vega",dept:"Business Solutions",status:"En progreso",inv:35000,leads:0},
+  {q:"Q2",date:"TBD",event:"Innov8 RD",org:"Proprietary Event DR",dept:"Business Solutions",status:"Pendiente",inv:0,leads:0},
+  {q:"Q2",date:"TBD",event:"E-Commerce Growth Caribbean",org:"Ecommerce Growth Caribbean",dept:"Sin departamento",status:"Pendiente",inv:0,leads:0},
+  {q:"Q2",date:"TBD",event:"Para La Naturaleza - Evento Filantrópico",org:"Para La Naturaleza, Inc.",dept:"Business Solutions",status:"Pendiente",inv:0,leads:0},
+  {q:"Q1",date:"TBD",event:"Torneo de Golf - Cooperativas de PR",org:"Liga Cooperativas PR",dept:"Business Solutions",status:"No aprobado",inv:0,leads:0},
+  {q:"Q2",date:"TBD",event:"33rd FIRM Golf Classic",org:"Fund. Ronald McDonald",dept:"Business Solutions",status:"No aprobado",inv:0,leads:0},
+];
+
+const filters = {estado:"todos", q:"todos", dpto:"todos"};
+
+function sf(type, val, btn) {
+  filters[type] = val;
+  btn.closest('.tab-row').querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function getFiltered() {
+  return EV.filter(e => {
+    const eOk = filters.estado === 'todos' || e.status === filters.estado;
+    const qOk = filters.q === 'todos' || (filters.q === 'Q3' ? (e.q==='Q3'||e.q==='Q4') : e.q === filters.q);
+    const dOk = filters.dpto === 'todos' || e.dept === filters.dpto;
+    return eOk && qOk && dOk;
+  });
+}
+
+function dbc(d) {
+  if (d==='Business Solutions') return 'db-bs';
+  if (d==='Evertec & MAB Event Status') return 'db-mab';
+  if (d==='Oficina del Presidente') return 'db-op';
+  return 'db-na';
+}
+function deptLabel(d) { return d==='Evertec & MAB Event Status' ? 'Evertec & MAB' : d; }
+function bc(s) {
+  const sl = s.toLowerCase();
+  if (sl==='completado') return 'b-comp';
+  if (sl==='en progreso') return 'b-prog';
+  if (sl.includes('aprobar')) return 'b-apro';
+  if (sl.includes('no aprobado')) return 'b-noap';
+  return 'b-pend';
+}
+
+function render() {
+  const f = getFiltered();
+  document.getElementById('rc').textContent = `Mostrando ${f.length} evento${f.length!==1?'s':''}`;
+  document.getElementById('kT').textContent = f.length;
+  document.getElementById('kC').textContent = f.filter(e=>e.status==='Completado').length;
+  document.getElementById('kP').textContent = f.filter(e=>e.status!=='Completado').length;
+  document.getElementById('kI').textContent = '$' + f.reduce((a,e)=>a+e.inv,0).toLocaleString();
+  document.getElementById('kIs').textContent = f.reduce((a,e)=>a+e.leads,0) + ' leads registrados';
+  document.getElementById('tbl').innerHTML = f.map(e => `
+    <tr>
+      <td><span class="q-pill">${e.q}</span></td>
+      <td style="color:#6b7280;white-space:nowrap;font-size:12px">${e.date}</td>
+      <td style="font-weight:700">${e.event}</td>
+      <td style="color:#6b7280;font-size:12px">${e.org}</td>
+      <td><span class="${dbc(e.dept)}">${deptLabel(e.dept)}</span></td>
+      <td><span class="badge ${bc(e.status)}">${e.status}</span></td>
+      <td style="font-size:12px">${e.inv>0?'$'+e.inv.toLocaleString():'—'}</td>
+      <td style="font-size:12px">${e.leads>0?e.leads:'—'}</td>
+    </tr>`).join('');
+}
+
+render();
+
+new Chart(document.getElementById('chartMes'), {
+  type: 'bar',
+  data: {
+    labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Oct'],
+    datasets: [{
+      data: [6000, 31000, 34750, 47000, 367980, 10000, 0, 21500, 45000],
+      backgroundColor: ['#1B3A6B','#1B3A6B','#1B3A6B','#2D5DA1','#2D5DA1','#2D5DA1','#85B7EB','#85B7EB','#85B7EB'],
+      borderRadius: 5, barPercentage: 0.65
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend:{display:false}, tooltip:{callbacks:{label: ctx => '$'+ctx.raw.toLocaleString()}} },
+    scales: {
+      x: { ticks:{font:{size:12,family:'Lato'},autoSkip:false}, grid:{display:false} },
+      y: { ticks:{font:{size:11,family:'Lato'},callback: v => v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v}, grid:{color:'rgba(0,0,0,0.05)'} }
+    }
+  }
+});
+</script>
+</body>
+</html>
