@@ -63,7 +63,6 @@
   .b-prog { background:#E6F1FB;color:#185FA5; }
   .b-pend { background:#f1f0e8;color:#5F5E5A; }
   .b-apro { background:#FAEEDA;color:#854F0B; }
-  .b-noap { background:#FCEBEB;color:#A32D2D; }
   .b-nopa { background:#f3f3f3;color:#888; }
   .b-canc { background:#ffe4e4;color:#c0392b; }
   .q-pill { display:inline-block;font-size:10px;padding:2px 6px;border-radius:20px;background:#EEEDFE;color:#534AB7;font-weight:700; }
@@ -88,24 +87,22 @@
 </style>
 </head>
 <body>
-
 <div class="top-bar">
   <h1>Eventos Evertec — Tracker 2026</h1>
   <span>93 eventos · actualizado Abr 2026</span>
 </div>
-
 <div class="dash">
   <div class="kpis">
-    <div class="kpi"><div class="kpi-label">Eventos totales</div><div class="kpi-value" id="kT">93</div><div class="kpi-sub">Q1: 22 · Q2: 37 · Q3: 22 · Q4: 12</div></div>
+    <div class="kpi"><div class="kpi-label">Eventos totales</div><div class="kpi-value" id="kT">93</div><div class="kpi-sub">Q1: 22 · Q2: 36 · Q3: 22 · Q4: 13</div></div>
     <div class="kpi"><div class="kpi-label">Completados</div><div class="kpi-value kpi-green" id="kC">20</div><div class="kpi-sub">Q1 + inicios Q2</div></div>
-    <div class="kpi"><div class="kpi-label">En progreso</div><div class="kpi-value" id="kP" style="color:#185FA5">20</div><div class="kpi-sub">Activos ahora</div></div>
-    <div class="kpi"><div class="kpi-label">Pendientes / Por aprobar</div><div class="kpi-value" id="kPA">46</div><div class="kpi-sub" id="kPASub">1 por aprobar · 7 no participamos</div></div>
-    <div class="kpi"><div class="kpi-label">Inversión total</div><div class="kpi-value" id="kI">$985,370</div><div class="kpi-sub" id="kIs">25 leads registrados</div></div>
+    <div class="kpi"><div class="kpi-label">En progreso</div><div class="kpi-value" id="kP" style="color:#185FA5">23</div><div class="kpi-sub">Activos ahora</div></div>
+    <div class="kpi"><div class="kpi-label">Pendientes / Por aprobar</div><div class="kpi-value" id="kPA">43</div><div class="kpi-sub" id="kPASub">1 por aprobar · 6 no participamos</div></div>
+    <div class="kpi"><div class="kpi-label">Inversión total</div><div class="kpi-value" id="kI">$1,002,240</div><div class="kpi-sub" id="kIs">25 leads registrados</div></div>
   </div>
 
   <div class="charts-row">
     <div class="card">
-      <div class="card-title">Inversión por mes (confirmada)</div>
+      <div class="card-title">Inversión por mes</div>
       <div style="position:relative;height:190px;"><canvas id="chartMes"></canvas></div>
     </div>
     <div class="card">
@@ -167,11 +164,11 @@
         <th style="width:4%">Q</th>
         <th style="width:9%">Fecha</th>
         <th style="width:23%">Evento</th>
-        <th style="width:14%">Organización</th>
+        <th style="width:13%">Organización</th>
         <th style="width:13%">Departamento</th>
         <th style="width:12%">Categoría</th>
         <th style="width:11%">Estado</th>
-        <th style="width:8%">Inversión</th>
+        <th style="width:9%">Inversión</th>
         <th style="width:6%">Leads</th>
       </tr></thead>
       <tbody id="tbl"></tbody>
@@ -197,7 +194,7 @@ const EV = [
   {q:"Q1",date:"Mar 27",event:"Convención Ejecutivos Cooperativas @ Ponce",org:"Asoc. Cooperativas PR",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"Completado",inv:1600,leads:0},
   {q:"Q1",date:"Mar 28",event:"Pink Gala @Fairmont El San Juan",org:"Susan G. Komen",dept:"Business Solutions",cat:"Philanthropy / Foundations",status:"Completado",inv:4000,leads:0},
   {q:"Q1",date:"Mar 29",event:"5K Familia - Hospital del Niño",org:"Soc. Pro Hospital del Niño",dept:"Business Solutions",cat:"Philanthropy / Foundations",status:"Completado",inv:750,leads:0},
-  {q:"Q1",date:"Ene 01",event:"Jewish Community Center of Puerto Rico",org:"Jewish Community Center",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:1500,leads:0},
+  {q:"Q1",date:"Ene 01",event:"Jewish Community Center of PR",org:"Jewish Community Center",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:1500,leads:0},
   {q:"Q1",date:"Ene 01",event:"Fundacion Casa Kai",org:"Fundacion Casa Kai",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Cancelado",inv:2500,leads:0},
   {q:"Q1",date:"Feb 01",event:"Saint John's School",org:"Saint John's School",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Completado",inv:10000,leads:0},
   {q:"Q1",date:"Feb 01",event:"Superchef Econo 2026",org:"Supermercados Econo",dept:"ATH Brand Fund",cat:"Corporate / Industry Events",status:"Pendiente",inv:36000,leads:0},
@@ -213,29 +210,29 @@ const EV = [
   {q:"Q2",date:"Abr 30",event:"CIO & IT Leadership Conference",org:"Puerto Rico IT Clusters",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",inv:5000,leads:0},
   {q:"Q2",date:"May 01",event:"Gran Copa Gobernadora 2026",org:"Fed. Ecuestre de PR",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",inv:500,leads:0},
   {q:"Q2",date:"May 01",event:"F1 Miami",org:"Formula 1",dept:"Oficina del Presidente",cat:"Customer Relations",status:"En progreso",inv:354000,leads:0},
-  {q:"Q2",date:"May 01",event:"CUD con Gustavo Vélez y Popular Insurance",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:0,leads:0},
+  {q:"Q2",date:"May 01",event:"Evento Filantrópico Para La Naturaleza",org:"Para La Naturaleza, Inc.",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:5000,leads:0},
   {q:"Q2",date:"May 06",event:"Lunch and Learn",org:"Evertec Acumática",dept:"Business Solutions",cat:"Internal Events",status:"En progreso",inv:2500,leads:0},
   {q:"Q2",date:"May 11",event:"Actividad Popular Insurance @ Plaza Dorada",org:"Popular Insurance",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",inv:0,leads:0},
   {q:"Q2",date:"May 13",event:"Acumatica - Almuerzo Econo",org:"Evertec Acumática",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",inv:3000,leads:0},
   {q:"Q2",date:"May 13",event:"SME @ Centro de Convenciones",org:"SME",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",inv:5000,leads:0},
   {q:"Q2",date:"May 15",event:"Coliseo de Puerto Rico - Ed Sheeran",org:"Concierto Ed Sheeran",dept:"Business Solutions",cat:"Customer Relations",status:"En progreso",inv:0,leads:0},
-  {q:"Q2",date:"May 16",event:"Agrohack Conference & Expo 2026",org:"Agrohack Conference & Expo",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",inv:0,leads:0},
+  {q:"Q2",date:"May 16",event:"Agrohack Conference & Expo 2026",org:"Agrohack Conference",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",inv:0,leads:0},
   {q:"Q2",date:"May 16",event:"Golf Empleados Popular",org:"Banco Popular",dept:"Business Solutions",cat:"Golf Tournament",status:"En progreso",inv:10000,leads:0},
   {q:"Q2",date:"May 28",event:"El Museo del Barrio Gala",org:"El Museo del Barrio",dept:"Oficina del Presidente",cat:"Philanthropy / Foundations",status:"En progreso",inv:25000,leads:0},
   {q:"Q2",date:"May 28",event:"PR COMPRA - Expo Suplidores de Gobierno",org:"PR COMPRA",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",inv:3980,leads:0},
-  {q:"Q2",date:"May 01",event:"Evento Filantrópico Para La Naturaleza",org:"Para La Naturaleza, Inc.",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:5000,leads:0},
-  {q:"Q2",date:"Jun 01",event:"CUD en Tu Pueblo - Arroyo",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
-  {q:"Q2",date:"Jun 01",event:"CUD en Tu Pueblo - Guayama",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
-  {q:"Q2",date:"Jun 01",event:"CUD Congreso de Salud",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:2550,leads:0},
-  {q:"Q2",date:"Jun 01",event:"CUD Semana PYMES",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:2550,leads:0},
+  {q:"Q2",date:"May 01",event:"CUD con Gustavo Vélez y Popular Insurance",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"No participamos",inv:0,leads:0},
+  {q:"Q2",date:"Jun 01",event:"CUD en Tu Pueblo - Arroyo",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
+  {q:"Q2",date:"Jun 01",event:"CUD en Tu Pueblo - Guayama",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
+  {q:"Q2",date:"Jun 01",event:"CUD Congreso de Salud",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:2600,leads:0},
+  {q:"Q2",date:"Jun 01",event:"CUD Semana PYMES",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:2600,leads:0},
   {q:"Q2",date:"Jun 04",event:"Subway & Wing Stop Golf Classic 2026",org:"Subway",dept:"Evertec & MAB Event Status",cat:"Golf Tournament",status:"Por aprobar",inv:2500,leads:0},
-  {q:"Q2",date:"Jun 05",event:"St. Jude Golf Tournament",org:"St. Jude Research Hospital",dept:"Business Solutions",cat:"Golf Tournament",status:"No participamos",inv:0,leads:0},
   {q:"Q2",date:"Jun 01",event:"Cooperativas de PR Torneo de Golf",org:"Liga Cooperativas PR",dept:"Full offer Puerto Rico",cat:"Golf Tournament",status:"No participamos",inv:0,leads:0},
+  {q:"Q2",date:"Jun 05",event:"St. Jude Golf Tournament",org:"St. Jude Research Hospital",dept:"Business Solutions",cat:"Golf Tournament",status:"No participamos",inv:0,leads:0},
   {q:"Q2",date:"Jun 25",event:"MIDA Conference & Food Show 2026",org:"MIDA Centro de Convenciones",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",inv:4500,leads:0},
-  {q:"Q2",date:"Innov8",event:"Innov8 RD",org:"Proprietary Event DR",dept:"Business Solutions",cat:"Proprietary Event",status:"Pendiente",inv:0,leads:0},
   {q:"Q2",date:"Jun",event:"Innov8 Dominican Republic",org:"Proprietary Event DR",dept:"Business Solutions",cat:"Proprietary Event",status:"Pendiente",inv:30000,leads:0},
-  {q:"Q2",date:"TBD",event:"E-Commerce Growth Caribbean",org:"Ecommerce Growth Caribbean",dept:"Sin departamento",cat:"Corporate / Industry Events",status:"Pendiente",inv:0,leads:0},
-  {q:"Q2",date:"TBD",event:"Para La Naturaleza - Evento Filantrópico",org:"Para La Naturaleza, Inc.",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"Pendiente",inv:0,leads:0},
+  {q:"Q2",date:"TBD",event:"Innov8 RD",org:"Proprietary Event DR",dept:"Business Solutions",cat:"Proprietary Event",status:"Pendiente",inv:0,leads:0},
+  {q:"Q2",date:"TBD",event:"E-Commerce Growth Caribbean",org:"Ecommerce Growth Caribbean",dept:"Sin departamento",cat:"Corporate / Industry Events",status:"Pendiente",inv:5000,leads:0},
+  {q:"Q2",date:"TBD",event:"Para La Naturaleza - Evento Filantrópico",org:"Para La Naturaleza, Inc.",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"Pendiente",inv:5000,leads:0},
   {q:"Q2",date:"TBD",event:"33rd FIRM Golf Classic",org:"Fund. Ronald McDonald",dept:"Business Solutions",cat:"Golf Tournament",status:"No participamos",inv:3000,leads:0},
   {q:"Q3",date:"Jul 01",event:"Encuentro Econo @ Hyatt Grand Reserve",org:"Econo",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",inv:6500,leads:0},
   {q:"Q3",date:"Jul 01",event:"Asociación de Bancos de PR",org:"Asoc. de Bancos de PR",dept:"Oficina del Presidente",cat:"Corporate / Industry Events",status:"Pendiente",inv:5000,leads:0},
@@ -244,8 +241,8 @@ const EV = [
   {q:"Q3",date:"Jul 01",event:"CUD en Tu Pueblo - Villalba",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
   {q:"Q3",date:"Jul 01",event:"Boys and Girls Club (Legacy Council Pledge)",org:"Vimenti Organization",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:10000,leads:0},
   {q:"Q3",date:"Ago 01",event:"Biz Growth Summit Convención CUD",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:0,leads:0},
-  {q:"Q3",date:"Ago 01",event:"CUD en Tu Pueblo - Santa Isabel",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
-  {q:"Q3",date:"Ago 01",event:"CUD en Tu Pueblo - Barceloneta",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
+  {q:"Q3",date:"Ago 01",event:"CUD en Tu Pueblo - Santa Isabel",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
+  {q:"Q3",date:"Ago 01",event:"CUD en Tu Pueblo - Barceloneta",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
   {q:"Q3",date:"Ago 01",event:"PR Pizza and Beer Fest",org:"PR Pizza and Beer Fest",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:3500,leads:0},
   {q:"Q3",date:"Ago 01",event:"Retail Out of the Box",org:"Asoc. Comercio al Detal",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:5000,leads:0},
   {q:"Q3",date:"Ago 01",event:"SER de PR",org:"SER de Puerto Rico Inc.",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:2500,leads:0},
@@ -253,20 +250,20 @@ const EV = [
   {q:"Q3",date:"Ago 08",event:"Culturarte - Freddie de Tommaso",org:"PR Centro de Artes",dept:"Oficina del Presidente",cat:"Philanthropy / Foundations",status:"En progreso",inv:10000,leads:0},
   {q:"Q3",date:"Ago 12",event:"22do Torneo de Golf P.E.C.E.S.",org:"P.E.C.E.S. Inc.",dept:"Business Solutions",cat:"Golf Tournament",status:"En progreso",inv:1500,leads:0},
   {q:"Q3",date:"Sep 01",event:"The Nails Expo 2026",org:"Y Events Agency",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:0,leads:0},
-  {q:"Q3",date:"Sep 01",event:"CUD en Tu Pueblo - Aguadilla",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
-  {q:"Q3",date:"Sep 01",event:"CUD en Tu Pueblo - Ciales",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
+  {q:"Q3",date:"Sep 01",event:"CUD en Tu Pueblo - Aguadilla",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
+  {q:"Q3",date:"Sep 01",event:"CUD en Tu Pueblo - Ciales",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
   {q:"Q3",date:"Oct 30",event:"Asore Food Show",org:"Asore",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",inv:10000,leads:0},
   {q:"Q4",date:"Oct 01",event:"Eventos del DDEC - Foodtrucks - Ponce",org:"Supermercados Econo",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:0,leads:0},
-  {q:"Q4",date:"Oct 01",event:"CUD en Tu Pueblo - Bayamón",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
-  {q:"Q4",date:"Oct 01",event:"CUD en Tu Pueblo - Caguas",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
+  {q:"Q4",date:"Oct 01",event:"CUD en Tu Pueblo - Bayamón",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
+  {q:"Q4",date:"Oct 01",event:"CUD en Tu Pueblo - Caguas",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
   {q:"Q4",date:"Oct 01",event:"Eventos Regionales ASORE",org:"Asore",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:5000,leads:0},
-  {q:"Q4",date:"Oct 01",event:"Bakery & Restaurant Show 2026",org:"Asore",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:0,leads:0},
+  {q:"Q4",date:"Oct 01",event:"Bakery & Restaurant Show 2026",org:"Asore",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:6500,leads:0},
   {q:"Q4",date:"Oct 01",event:"Endeavor NYC Event",org:"Endeavor Initiative PR",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:25000,leads:0},
   {q:"Q4",date:"Oct 01",event:"Noche Musical Fundación Banco Popular",org:"Fundación Banco Popular",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:50000,leads:0},
   {q:"Q4",date:"Oct 04",event:"School of Rock Broadway Show",org:"Ender Vega",dept:"Business Solutions",cat:"Art and Musics Events",status:"En progreso",inv:35000,leads:0},
   {q:"Q4",date:"Oct 16",event:"Torneo Golf Triple SSS",org:"Triple S",dept:"Business Solutions",cat:"Golf Tournament",status:"En progreso",inv:5000,leads:0},
   {q:"Q4",date:"Nov 01",event:"Eventos del DDEC - San Juan",org:"Dep. Desarrollo Económico",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:0,leads:0},
-  {q:"Q4",date:"Nov 01",event:"CUD en Tu Pueblo - Vega Baja",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:170,leads:0},
+  {q:"Q4",date:"Nov 01",event:"CUD en Tu Pueblo - Vega Baja",org:"CUD",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:200,leads:0},
   {q:"Q4",date:"Nov 01",event:"Bakery & Restaurant Show",org:"Asore",dept:"Merchant Business",cat:"Corporate / Industry Events",status:"Pendiente",inv:45000,leads:0},
   {q:"Q4",date:"Nov 01",event:"2026 Donation Centro Crece",org:"Fund. Luis G. Fortuño",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:5000,leads:0},
   {q:"Q4",date:"Nov 01",event:"Campaña Multiplica Tu Cariño 2026",org:"MCS Foundation",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",inv:10000,leads:0},
@@ -278,8 +275,10 @@ const EV = [
 ];
 
 const FULL_OFFER_DEPTS = ["Full offer Puerto Rico","Full offer Evertec","ATH Brand Fund"];
+const OTHER_DEPTS = ["Sin departamento","ATH Brand Fund"];
 const OTHER_CATS = ["Art and Musics Events","Proprietary Event","Internal Events / Initiatives"];
 const INTERNAL_CATS = ["Internal Events","Internal Events / Initiatives"];
+const MAIN_DEPTS = ["Business Solutions","Evertec & MAB Event Status","Oficina del Presidente","Merchant Business","Full offer Puerto Rico","Full offer Evertec","ATH Brand Fund","Sin departamento"];
 
 const filters = {estado:"todos", q:"todos", dpto:"todos", cat:"todos"};
 
@@ -296,7 +295,7 @@ function getFiltered() {
     const qOk = filters.q==='todos' || e.q===filters.q;
     const dOk = filters.dpto==='todos' ||
       (filters.dpto==='Full offer' ? FULL_OFFER_DEPTS.includes(e.dept) :
-       filters.dpto==='other' ? (!['Business Solutions','Evertec & MAB Event Status','Oficina del Presidente','Merchant Business',...FULL_OFFER_DEPTS,'Sin departamento'].includes(e.dept)) :
+       filters.dpto==='other' ? !MAIN_DEPTS.includes(e.dept) :
        e.dept===filters.dpto);
     const cOk = filters.cat==='todos' ||
       (filters.cat==='other' ? OTHER_CATS.includes(e.cat) :
@@ -380,7 +379,7 @@ new Chart(document.getElementById('chartMes'),{
   data:{
     labels:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Oct','Nov','Dic'],
     datasets:[{
-      data:[43500,93400,36350,63500,416480,14420,21510,31500,95000,180340,1000],
+      data:[43500,95400,36350,63500,420780,56100,21510,31500,95000,182340,1000],
       backgroundColor:['#1B3A6B','#1B3A6B','#1B3A6B','#2D5DA1','#2D5DA1','#2D5DA1','#85B7EB','#85B7EB','#85B7EB','#C5D9F2','#C5D9F2'],
       borderRadius:5,barPercentage:0.65
     }]
