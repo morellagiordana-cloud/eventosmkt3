@@ -79,6 +79,13 @@
   .cb-int { display:inline-block;font-size:10px;padding:2px 6px;border-radius:5px;background:#f1f0e8;color:#5F5E5A;font-weight:700; }
   .cb-other{display:inline-block;font-size:10px;padding:2px 6px;border-radius:5px;background:#FCEBEB;color:#A32D2D;font-weight:700; }
   .footer { text-align:center;font-size:12px;color:#9ca3af;margin-top:2rem; }
+  .search-wrap { position:relative; margin-bottom:1.25rem; }
+  .search-wrap svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#9ca3af; pointer-events:none; }
+  #searchInput { width:100%; padding:10px 14px 10px 38px; font-family:'Lato',Helvetica,Arial,sans-serif; font-size:13px; border:1px solid #e4e7ed; border-radius:10px; background:#fff; color:#1a1a1a; outline:none; transition:border-color 0.15s; }
+  #searchInput:focus { border-color:#2D5DA1; box-shadow:0 0 0 3px rgba(45,93,161,0.08); }
+  #searchInput::placeholder { color:#9ca3af; }
+  .search-clear { position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:#9ca3af; font-size:18px; line-height:1; padding:2px 4px; display:none; }
+  .search-clear:hover { color:#6b7280; }
   @media(max-width:700px){
     .kpis{grid-template-columns:repeat(2,minmax(0,1fr));}
     .charts-row{grid-template-columns:1fr;}
@@ -116,6 +123,12 @@
         <div class="bar-wrap"><div class="bar-label"><span>Proprietary / Art / Other</span><strong>3</strong></div><div class="bar-bg"><div class="bar-fill" style="width:3%;background:#E24B4A"></div></div></div>
       </div>
     </div>
+  </div>
+
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" placeholder="Buscar por evento, organización o departamento…" oninput="onSearch(this.value)">
+    <button class="search-clear" id="clearBtn" onclick="clearSearch()">×</button>
   </div>
 
   <div class="table-card">
@@ -281,6 +294,18 @@ const INTERNAL_CATS = ["Internal Events","Internal Events / Initiatives"];
 const MAIN_DEPTS = ["Business Solutions","Evertec & MAB Event Status","Oficina del Presidente","Merchant Business","Full offer Puerto Rico","Full offer Evertec","ATH Brand Fund","Sin departamento"];
 
 const filters = {estado:"todos", q:"todos", dpto:"todos", cat:"todos"};
+let searchQuery = "";
+
+function onSearch(val) {
+  searchQuery = val.toLowerCase().trim();
+  document.getElementById('clearBtn').style.display = searchQuery ? 'block' : 'none';
+  render();
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  onSearch('');
+}
 
 function sf(type, val, btn) {
   filters[type] = val;
@@ -301,7 +326,8 @@ function getFiltered() {
       (filters.cat==='other' ? OTHER_CATS.includes(e.cat) :
        filters.cat==='internal' ? INTERNAL_CATS.includes(e.cat) :
        e.cat===filters.cat);
-    return eOk && qOk && dOk && cOk;
+    const sOk = !searchQuery || [e.event, e.org, e.dept, e.cat, e.status].some(v => v.toLowerCase().includes(searchQuery));
+    return eOk && qOk && dOk && cOk && sOk;
   });
 }
 
