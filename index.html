@@ -117,15 +117,15 @@
 <body>
 <div class="top-bar">
   <h1>Eventos Evertec — Tracker 2026</h1>
-  <span>75 eventos · actualizado Jun 2026</span>
+  <span>79 eventos · actualizado Jun 2026</span>
 </div>
 <div class="dash">
   <div class="kpis">
-    <div class="kpi"><div class="kpi-label">Eventos totales</div><div class="kpi-value" id="kT">75</div><div class="kpi-sub">Q1: 20 · Q2: 28 · Q3: 14 · Q4: 13</div></div>
-    <div class="kpi"><div class="kpi-label">Completados</div><div class="kpi-value kpi-green" id="kC">32</div><div class="kpi-sub">Q1 + Q2 parcial</div></div>
-    <div class="kpi"><div class="kpi-label">En progreso</div><div class="kpi-value" id="kP" style="color:#185FA5">17</div><div class="kpi-sub">Activos ahora</div></div>
+    <div class="kpi"><div class="kpi-label">Eventos totales</div><div class="kpi-value" id="kT">79</div><div class="kpi-sub">Q1: 20 · Q2: 31 · Q3: 15 · Q4: 13</div></div>
+    <div class="kpi"><div class="kpi-label">Completados</div><div class="kpi-value kpi-green" id="kC">38</div><div class="kpi-sub">Q1 + Q2 parcial</div></div>
+    <div class="kpi"><div class="kpi-label">En progreso</div><div class="kpi-value" id="kP" style="color:#185FA5">15</div><div class="kpi-sub">Activos ahora</div></div>
     <div class="kpi"><div class="kpi-label">Pendientes</div><div class="kpi-value" id="kPA">20</div><div class="kpi-sub">5 no participamos · 1 cancelado</div></div>
-    <div class="kpi"><div class="kpi-label">Inversión total</div><div class="kpi-value" id="kI">$964,730</div><div class="kpi-sub" id="kIs">30 leads registrados</div></div>
+    <div class="kpi"><div class="kpi-label">Inversión total</div><div class="kpi-value" id="kI">$967,230</div><div class="kpi-sub" id="kIs">33 leads registrados</div></div>
   </div>
 
   <div class="section-label">Próximos eventos</div>
@@ -139,8 +139,8 @@
     <div class="card">
       <div class="card-title">Por categoría</div>
       <div style="margin-top:4px;">
-        <div class="bar-wrap"><div class="bar-label"><span>Corporate / Industry Events</span><strong>38</strong></div><div class="bar-bg"><div class="bar-fill" style="width:51%;background:#378ADD"></div></div></div>
-        <div class="bar-wrap"><div class="bar-label"><span>Philanthropy / Foundations</span><strong>22</strong></div><div class="bar-bg"><div class="bar-fill" style="width:29%;background:#534AB7"></div></div></div>
+        <div class="bar-wrap"><div class="bar-label"><span>Corporate / Industry Events</span><strong>42</strong></div><div class="bar-bg"><div class="bar-fill" style="width:53%;background:#378ADD"></div></div></div>
+        <div class="bar-wrap"><div class="bar-label"><span>Philanthropy / Foundations</span><strong>22</strong></div><div class="bar-bg"><div class="bar-fill" style="width:28%;background:#534AB7"></div></div></div>
         <div class="bar-wrap"><div class="bar-label"><span>Golf Tournament</span><strong>10</strong></div><div class="bar-bg"><div class="bar-fill" style="width:13%;background:#1D9E75"></div></div></div>
         <div class="bar-wrap"><div class="bar-label"><span>Customer Relations</span><strong>2</strong></div><div class="bar-bg"><div class="bar-fill" style="width:3%;background:#BA7517"></div></div></div>
         <div class="bar-wrap"><div class="bar-label"><span>Internal Events</span><strong>2</strong></div><div class="bar-bg"><div class="bar-fill" style="width:3%;background:#888780"></div></div></div>
@@ -198,7 +198,7 @@
         </div></div>
       </div>
     </div>
-    <div class="rc" id="rc">Mostrando 75 eventos</div>
+    <div class="rc" id="rc">Mostrando 79 eventos</div>
     <table>
       <thead><tr>
         <th style="width:4%">Q</th>
@@ -218,7 +218,7 @@
 </div>
 
 <script>
-const TODAY = new Date('2026-06-01');
+const TODAY = new Date('2026-06-10');
 const EV = [
   {q:"Q1",date:"2026-01-01",dateD:"Ene 01",event:"Jewish Community Center of Puerto Rico",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",bud:"Budget",inv:1500,leads:0},
   {q:"Q1",date:"2026-01-01",dateD:"Ene 01",event:"Fundacion Casa Kai",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Cancelado",bud:"Budget",inv:2500,leads:0},
@@ -257,31 +257,35 @@ const EV = [
   {q:"Q2",date:"2026-05-16",dateD:"May 16",event:"Agrohack Conference & Expo 2026",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Completado",bud:"-",inv:0,leads:3},
   {q:"Q2",date:"2026-05-16",dateD:"May 16",event:"Golf Empleados Popular",dept:"Business Solutions",cat:"Golf Tournament",status:"Completado",bud:"Unbudgeted",inv:10000,leads:0},
   {q:"Q2",date:"2026-05-21",dateD:"May 21",event:"Foro Anual Industria de Seguros",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"Completado",bud:"Unbudgeted",inv:1500,leads:0},
-  {q:"Q2",date:"2026-05-28",dateD:"May 28",event:"Actividad Popular Insurance @ Plaza Dorada",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:0,leads:2},
-  {q:"Q2",date:"2026-05-28",dateD:"May 28",event:"El Museo del Barrio Gala",dept:"Oficina del Presidente",cat:"Philanthropy / Foundations",status:"En progreso",bud:"Budget",inv:25000,leads:0},
-  {q:"Q2",date:"2026-05-28",dateD:"May 28",event:"PR COMPRA - Expo Suplidores de Gobierno",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",bud:"Unbudgeted",inv:3980,leads:3},
-  {q:"Q2",date:"2026-06-01",dateD:"Jun 01",event:"Cooperativas de PR Torneo de Golf",dept:"Full offer Puerto Rico",cat:"Golf Tournament",status:"No participamos",bud:"Budget",inv:15000,leads:0},
-  {q:"Q2",date:"2026-06-04",dateD:"Jun 04",event:"Subway & Wing Stop Golf Classic 2026",dept:"Evertec & MAB Event Status",cat:"Golf Tournament",status:"En progreso",bud:"Unbudgeted",inv:2500,leads:0},
+  {q:"Q2",date:"2026-05-28",dateD:"May 28",event:"Actividad Popular Insurance @ Plaza Dorada",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Completado",bud:"Budget",inv:0,leads:2},
+  {q:"Q2",date:"2026-05-28",dateD:"May 28",event:"El Museo del Barrio Gala",dept:"Oficina del Presidente",cat:"Philanthropy / Foundations",status:"Completado",bud:"Budget",inv:25000,leads:0},
+  {q:"Q2",date:"2026-05-28",dateD:"May 28",event:"PR COMPRA - Expo Suplidores de Gobierno",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"Completado",bud:"Unbudgeted",inv:3980,leads:3},
+  {q:"Q2",date:"2026-06-04",dateD:"Jun 04",event:"Subway & Wing Stop Golf Classic 2026",dept:"Evertec & MAB Event Status",cat:"Golf Tournament",status:"Completado",bud:"Unbudgeted",inv:2500,leads:0},
   {q:"Q2",date:"2026-06-05",dateD:"Jun 05",event:"St. Jude Golf Tournament",dept:"Business Solutions",cat:"Golf Tournament",status:"No participamos",bud:"Budget",inv:0,leads:0},
-  {q:"Q2",date:"2026-06-08",dateD:"Jun 08",event:"Asore Eat Regional @Holiday Inn Mayaguez",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:8500,leads:0},
+  {q:"Q2",date:"2026-06-08",dateD:"Jun 08",event:"Asore Eat Regional @Holiday Inn Mayaguez",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Completado",bud:"Budget",inv:8500,leads:3},
+  {q:"Q2",date:"2026-06-10",dateD:"Jun 10",event:"Foro Cámara de Comercio by Bpop",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Completado",bud:"-",inv:0,leads:0},
+  {q:"Q2",date:"2026-06-01",dateD:"Jun 01",event:"Cooperativas de PR Torneo de Golf",dept:"Full offer Puerto Rico",cat:"Golf Tournament",status:"No participamos",bud:"Budget",inv:15000,leads:0},
+  {q:"Q2",date:"2026-06-23",dateD:"Jun 23",event:"MCS - Te paga 2027",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:0,leads:0},
   {q:"Q2",date:"2026-06-25",dateD:"Jun 25",event:"Actividad Popular Insurance @ Señorial Center",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"-",inv:0,leads:0},
   {q:"Q2",date:"2026-06-25",dateD:"Jun 25",event:"MIDA Conference & Food Show 2026",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:4500,leads:0},
   {q:"Q2",date:"TBD",dateD:"TBD",event:"Innov8 RD",dept:"Business Solutions",cat:"Proprietary Event",status:"Pendiente",bud:"Budget",inv:0,leads:0},
   {q:"Q2",date:"TBD",dateD:"TBD",event:"Para La Naturaleza - Evento Filantrópico",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"Pendiente",bud:"Budget",inv:5000,leads:0},
   {q:"Q3",date:"2026-07-01",dateD:"Jul 01",event:"Encuentro Econo @ Hyatt Grand Reserve",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:6500,leads:0},
-  {q:"Q3",date:"2026-07-01",dateD:"Jul 01",event:"Asociación de Bancos de PR",dept:"Oficina del Presidente",cat:"Corporate / Industry Events",status:"Pendiente",bud:"Budget",inv:5000,leads:0},
-  {q:"Q3",date:"2026-07-01",dateD:"Jul 01",event:"Boys and Girls Club (Legacy Council Pledge)",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",bud:"Budget",inv:10000,leads:0},
-  {q:"Q3",date:"2026-08-01",dateD:"Ago 01",event:"CUD - Gran Feria Agrícola",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Pendiente",bud:"Budget",inv:2500,leads:0},
+  {q:"Q3",date:"2026-07-01",dateD:"Jul 01",event:"Charla Cyber Seguridad - Encuentro Econo",dept:"Business Solutions",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:0,leads:0},
+  {q:"Q3",date:"TBD",dateD:"TBD",event:"Asociación de Bancos de PR",dept:"Oficina del Presidente",cat:"Corporate / Industry Events",status:"Pendiente",bud:"Budget",inv:5000,leads:0},
+  {q:"Q3",date:"TBD",dateD:"TBD",event:"Boys and Girls Club (Legacy Council Pledge)",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",bud:"Budget",inv:10000,leads:0},
+  {q:"Q3",date:"TBD",dateD:"TBD",event:"CUD - Gran Feria Agrícola",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:2500,leads:0},
   {q:"Q3",date:"2026-08-01",dateD:"Ago 01",event:"PR Pizza and Beer Fest",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Pendiente",bud:"Budget",inv:3500,leads:0},
-  {q:"Q3",date:"2026-08-01",dateD:"Ago 01",event:"Retail Out of the Box",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:10000,leads:0},
+  {q:"Q3",date:"2026-08-26",dateD:"Ago 26",event:"Retail Out of the Box",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:10000,leads:0},
   {q:"Q3",date:"2026-08-01",dateD:"Ago 01",event:"SER de PR",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",bud:"Budget",inv:2500,leads:0},
   {q:"Q3",date:"2026-08-07",dateD:"Ago 07",event:"Torneo de Golf - MMM",dept:"Business Solutions",cat:"Golf Tournament",status:"En progreso",bud:"Budget",inv:10000,leads:0},
   {q:"Q3",date:"2026-08-08",dateD:"Ago 08",event:"Culturarte de PR - Freddie de Tommaso & Emily D'Angelo",dept:"Oficina del Presidente",cat:"Philanthropy / Foundations",status:"En progreso",bud:"Budget",inv:10000,leads:0},
   {q:"Q3",date:"2026-08-12",dateD:"Ago 12",event:"22do Torneo de Golf P.E.C.E.S. Inc. 2026",dept:"Business Solutions",cat:"Golf Tournament",status:"En progreso",bud:"Unbudgeted",inv:1500,leads:0},
+  {q:"Q3",date:"2026-09-11",dateD:"Sep 11",event:"Convención Anual y Asamblea de Socios 2026",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Pendiente",bud:"-",inv:2500,leads:0},
   {q:"Q3",date:"2026-09-10",dateD:"Sep 10",event:"CUD - Convención Anual",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Pendiente",bud:"-",inv:2500,leads:0},
   {q:"Q3",date:"2026-10-30",dateD:"Oct 30",event:"Asore Food Show",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"Budget",inv:10000,leads:0},
   {q:"Q1",date:"TBD",dateD:"TBD",event:"Torneo de Golf - Cooperativas de PR",dept:"Business Solutions",cat:"Golf Tournament",status:"No participamos",bud:"-",inv:0,leads:0},
-  {q:"Q4",date:"2026-09-04",dateD:"Sep 04",event:"Bfest (Invitados por Popular)",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"-",inv:0,leads:0},
+  {q:"Q4",date:"2026-09-04",dateD:"Sep 04",event:"B-Fest by Popular",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"En progreso",bud:"-",inv:0,leads:0},
   {q:"Q4",date:"2026-10-01",dateD:"Oct 01",event:"Bakery & Restaurant Show 2026",dept:"Evertec & MAB Event Status",cat:"Corporate / Industry Events",status:"Pendiente",bud:"Budget",inv:6500,leads:0},
   {q:"Q4",date:"2026-10-01",dateD:"Oct 01",event:"Endeavor NYC Event",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",bud:"Budget",inv:25000,leads:0},
   {q:"Q4",date:"2026-10-01",dateD:"Oct 01",event:"Noche Musical Fundación Banco Popular",dept:"Full offer Puerto Rico",cat:"Philanthropy / Foundations",status:"Pendiente",bud:"Budget",inv:50000,leads:0},
@@ -305,116 +309,61 @@ const MAIN_DEPTS = ["Business Solutions","Evertec & MAB Event Status","Oficina d
 const filters = {estado:"todos", q:"todos", dpto:"todos", cat:"todos", bud:"todos"};
 let searchQuery = "";
 
-function onSearch(val) {
-  searchQuery = val.toLowerCase().trim();
-  document.getElementById('clearBtn').style.display = searchQuery ? 'block' : 'none';
-  render();
-}
+function onSearch(val) { searchQuery = val.toLowerCase().trim(); document.getElementById('clearBtn').style.display = searchQuery ? 'block' : 'none'; render(); }
 function clearSearch() { document.getElementById('searchInput').value=''; onSearch(''); }
-function sf(type, val, btn) {
-  filters[type] = val;
-  btn.closest('.tab-row').querySelectorAll('button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
-}
+function sf(type, val, btn) { filters[type] = val; btn.closest('.tab-row').querySelectorAll('button').forEach(b => b.classList.remove('active')); btn.classList.add('active'); render(); }
+
 function getFiltered() {
   return EV.filter(e => {
     const eOk = filters.estado==='todos' || e.status===filters.estado;
     const qOk = filters.q==='todos' || e.q===filters.q;
-    const dOk = filters.dpto==='todos' ||
-      (filters.dpto==='Full offer' ? FULL_OFFER_DEPTS.includes(e.dept) :
-       filters.dpto==='other' ? !MAIN_DEPTS.includes(e.dept) : e.dept===filters.dpto);
-    const cOk = filters.cat==='todos' ||
-      (filters.cat==='other' ? OTHER_CATS.includes(e.cat) :
-       filters.cat==='internal' ? INTERNAL_CATS.includes(e.cat) : e.cat===filters.cat);
+    const dOk = filters.dpto==='todos' || (filters.dpto==='Full offer' ? FULL_OFFER_DEPTS.includes(e.dept) : filters.dpto==='other' ? !MAIN_DEPTS.includes(e.dept) : e.dept===filters.dpto);
+    const cOk = filters.cat==='todos' || (filters.cat==='other' ? OTHER_CATS.includes(e.cat) : filters.cat==='internal' ? INTERNAL_CATS.includes(e.cat) : e.cat===filters.cat);
     const bOk = filters.bud==='todos' || e.bud===filters.bud;
     const sOk = !searchQuery || [e.event, e.dept, e.cat, e.status, e.q].some(v => v.toLowerCase().includes(searchQuery));
     return eOk && qOk && dOk && cOk && bOk && sOk;
   });
 }
-function highlight(text) {
-  if (!searchQuery) return text;
-  return text.replace(new RegExp(`(${searchQuery.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'), '<mark>$1</mark>');
-}
-function dbc(d) {
-  if (d==='Business Solutions') return 'db-bs';
-  if (d==='Evertec & MAB Event Status') return 'db-mab';
-  if (d==='Oficina del Presidente') return 'db-op';
-  if (FULL_OFFER_DEPTS.includes(d)) return 'db-fo';
-  return 'db-na';
-}
-function deptLabel(d) {
-  if (d==='Evertec & MAB Event Status') return 'Evertec & MAB';
-  if (d==='Full offer Puerto Rico') return 'Full Offer PR';
-  if (d==='Full offer Evertec') return 'Full Offer EV';
-  if (d==='ATH Brand Fund') return 'ATH Brand Fund';
-  return d;
-}
-function cbc(c) {
-  if (c==='Corporate / Industry Events') return 'cb-corp';
-  if (c==='Golf Tournament') return 'cb-golf';
-  if (c==='Philanthropy / Foundations') return 'cb-phil';
-  if (c==='Customer Relations') return 'cb-cust';
-  if (INTERNAL_CATS.includes(c)) return 'cb-int';
-  return 'cb-other';
-}
-function catLabel(c) {
-  const m = {'Corporate / Industry Events':'Corporate','Philanthropy / Foundations':'Philanthropy','Golf Tournament':'Golf','Customer Relations':'Customer Rel.'};
-  if (INTERNAL_CATS.includes(c)) return 'Internal';
-  return m[c] || c;
-}
-function bc(s) {
-  if (s==='Completado') return 'b-comp';
-  if (s==='En progreso') return 'b-prog';
-  if (s==='No participamos') return 'b-nopa';
-  if (s==='Cancelado') return 'b-canc';
-  return 'b-pend';
-}
+function highlight(text) { if (!searchQuery) return text; return text.replace(new RegExp(`(${searchQuery.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'), '<mark>$1</mark>'); }
+function dbc(d) { if (d==='Business Solutions') return 'db-bs'; if (d==='Evertec & MAB Event Status') return 'db-mab'; if (d==='Oficina del Presidente') return 'db-op'; if (FULL_OFFER_DEPTS.includes(d)) return 'db-fo'; return 'db-na'; }
+function deptLabel(d) { const m={'Evertec & MAB Event Status':'Evertec & MAB','Full offer Puerto Rico':'Full Offer PR','Full offer Evertec':'Full Offer EV','ATH Brand Fund':'ATH Brand Fund'}; return m[d]||d; }
+function cbc(c) { if (c==='Corporate / Industry Events') return 'cb-corp'; if (c==='Golf Tournament') return 'cb-golf'; if (c==='Philanthropy / Foundations') return 'cb-phil'; if (c==='Customer Relations') return 'cb-cust'; if (INTERNAL_CATS.includes(c)) return 'cb-int'; return 'cb-other'; }
+function catLabel(c) { const m={'Corporate / Industry Events':'Corporate','Philanthropy / Foundations':'Philanthropy','Golf Tournament':'Golf','Customer Relations':'Customer Rel.'}; if (INTERNAL_CATS.includes(c)) return 'Internal'; return m[c]||c; }
+function bc(s) { if (s==='Completado') return 'b-comp'; if (s==='En progreso') return 'b-prog'; if (s==='No participamos') return 'b-nopa'; if (s==='Cancelado') return 'b-canc'; return 'b-pend'; }
+
 function buildUpcoming() {
-  const active = EV.filter(e => ['En progreso','Pendiente'].includes(e.status) && e.date !== 'TBD');
-  const upcoming = active.map(e => ({...e, _d: new Date(e.date)}))
-    .filter(e => e._d >= TODAY).sort((a,b) => a._d - b._d).slice(0,6);
-  const week = TODAY.getTime() + 7*86400000;
-  const twoWeeks = TODAY.getTime() + 14*86400000;
-  const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const ms = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const upcoming = EV.filter(e => ['En progreso','Pendiente'].includes(e.status) && e.date !== 'TBD' && e.date !== 'TBC')
+    .map(e => ({...e, _d: new Date(e.date)})).filter(e => e._d >= TODAY).sort((a,b) => a._d - b._d).slice(0,6);
+  const wk = TODAY.getTime()+7*86400000, twk = TODAY.getTime()+14*86400000;
   const grid = document.getElementById('upcomingGrid');
   if (!upcoming.length) { grid.innerHTML='<div class="no-upcoming">No hay próximos eventos con fecha definida</div>'; return; }
   grid.innerHTML = upcoming.map(e => {
     const t = e._d.getTime();
     let cls='thismonth', lbl='Este mes';
-    if (t <= week) { cls='thisweek'; lbl='Esta semana'; }
-    else if (t <= twoWeeks) { cls='nextweeks'; lbl='Próximas 2 semanas'; }
-    const fd = `${months[e._d.getMonth()]} ${e._d.getDate()}`;
-    return `<div class="ev-card ${cls}"><div class="ev-label ${cls}">${lbl}</div><div class="ev-name">${e.event.length>52?e.event.slice(0,50)+'…':e.event}</div><div class="ev-dept">${deptLabel(e.dept)}</div><div class="ev-meta"><span class="ev-date-badge">${fd}</span><span class="ev-inv">${e.inv>0?'$'+e.inv.toLocaleString():'—'}</span></div></div>`;
+    if (t<=wk) { cls='thisweek'; lbl='Esta semana'; } else if (t<=twk) { cls='nextweeks'; lbl='Próximas 2 semanas'; }
+    return `<div class="ev-card ${cls}"><div class="ev-label ${cls}">${lbl}</div><div class="ev-name">${e.event.length>52?e.event.slice(0,50)+'…':e.event}</div><div class="ev-dept">${deptLabel(e.dept)}</div><div class="ev-meta"><span class="ev-date-badge">${ms[e._d.getMonth()]} ${e._d.getDate()}</span><span class="ev-inv">${e.inv>0?'$'+e.inv.toLocaleString():'—'}</span></div></div>`;
   }).join('');
 }
+
 function render() {
   const f = getFiltered();
   document.getElementById('rc').textContent = `Mostrando ${f.length} evento${f.length!==1?'s':''}`;
   document.getElementById('kT').textContent = f.length;
   document.getElementById('kC').textContent = f.filter(e=>e.status==='Completado').length;
   document.getElementById('kP').textContent = f.filter(e=>e.status==='En progreso').length;
-  document.getElementById('kPA').textContent = f.filter(e=>['Pendiente'].includes(e.status)).length;
+  document.getElementById('kPA').textContent = f.filter(e=>e.status==='Pendiente').length;
   document.getElementById('kI').textContent = '$'+f.reduce((a,e)=>a+e.inv,0).toLocaleString();
   document.getElementById('kIs').textContent = f.reduce((a,e)=>a+e.leads,0)+' leads registrados';
   document.getElementById('tbl').innerHTML = f.map(e => {
-    const budCls = e.bud==='Budget'?'bud-b':e.bud==='Unbudgeted'?'bud-u':'bud-n';
-    return `<tr>
-      <td><span class="q-pill">${e.q}</span></td>
-      <td style="color:#6b7280;white-space:nowrap;font-size:11px">${e.dateD}</td>
-      <td style="font-weight:700;font-size:12px">${highlight(e.event)}</td>
-      <td><span class="${dbc(e.dept)}">${deptLabel(e.dept)}</span></td>
-      <td><span class="${cbc(e.cat)}">${catLabel(e.cat)}</span></td>
-      <td><span class="badge ${bc(e.status)}">${e.status}</span></td>
-      <td><span class="bud-badge ${budCls}">${e.bud==='-'?'—':e.bud}</span></td>
-      <td style="font-size:11px">${e.inv>0?'$'+e.inv.toLocaleString():'—'}</td>
-      <td>${e.leads>0?`<span class="leads-pos">${e.leads}</span>`:'<span class="leads-zero">—</span>'}</td>
-    </tr>`;
+    const bc2 = e.bud==='Budget'?'bud-b':e.bud==='Unbudgeted'?'bud-u':'bud-n';
+    return `<tr><td><span class="q-pill">${e.q}</span></td><td style="color:#6b7280;white-space:nowrap;font-size:11px">${e.dateD}</td><td style="font-weight:700;font-size:12px">${highlight(e.event)}</td><td><span class="${dbc(e.dept)}">${deptLabel(e.dept)}</span></td><td><span class="${cbc(e.cat)}">${catLabel(e.cat)}</span></td><td><span class="badge ${bc(e.status)}">${e.status}</span></td><td><span class="bud-badge ${bc2}">${e.bud==='-'?'—':e.bud}</span></td><td style="font-size:11px">${e.inv>0?'$'+e.inv.toLocaleString():'—'}</td><td>${e.leads>0?`<span class="leads-pos">${e.leads}</span>`:'<span class="leads-zero">—</span>'}</td></tr>`;
   }).join('');
 }
+
 buildUpcoming();
 render();
-new Chart(document.getElementById('chartMes'),{type:'bar',data:{labels:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],datasets:[{data:[6000,95400,36350,63500,416480,38500,21510,21500,0,91000,82000,1000],backgroundColor:['#1B3A6B','#1B3A6B','#1B3A6B','#2D5DA1','#2D5DA1','#2D5DA1','#85B7EB','#85B7EB','#85B7EB','#C5D9F2','#C5D9F2','#C5D9F2'],borderRadius:5,barPercentage:0.65}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'$'+ctx.raw.toLocaleString()}}},scales:{x:{ticks:{font:{size:11,family:'Lato'},autoSkip:false},grid:{display:false}},y:{ticks:{font:{size:10,family:'Lato'},callback:v=>v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v},grid:{color:'rgba(0,0,0,0.05)'}}}}});
+new Chart(document.getElementById('chartMes'),{type:'bar',data:{labels:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],datasets:[{data:[6000,95400,36350,63500,416480,51480,21510,21500,0,91000,82000,1000],backgroundColor:['#1B3A6B','#1B3A6B','#1B3A6B','#2D5DA1','#2D5DA1','#2D5DA1','#85B7EB','#85B7EB','#85B7EB','#C5D9F2','#C5D9F2','#C5D9F2'],borderRadius:5,barPercentage:0.65}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'$'+ctx.raw.toLocaleString()}}},scales:{x:{ticks:{font:{size:11,family:'Lato'},autoSkip:false},grid:{display:false}},y:{ticks:{font:{size:10,family:'Lato'},callback:v=>v>=1000?'$'+(v/1000).toFixed(0)+'k':'$'+v},grid:{color:'rgba(0,0,0,0.05)'}}}}});
 </script>
 </body>
 </html>
